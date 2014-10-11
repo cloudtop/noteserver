@@ -23,14 +23,14 @@ public class UserServiceImpl implements UserService{
 		
 		NoteResponse res = new NoteResponse();
 		
-		User user = dao.findByName(name);
+		User user = dao.findByUserName(name);
 		if(user == null){
 			res.setStatus("1");
 			res.setMessage("用户名不存在");
 			return res;
 		}
 		
-		if(!user.getPassword().equals(password)){
+		if(!user.getUserPassword().equals(password)){
 			res.setStatus("2");
 			res.setMessage("密码错误");
 			return res;
@@ -38,12 +38,14 @@ public class UserServiceImpl implements UserService{
 		
 		res.setStatus("0");
 		res.setMessage("用户名和密码正确");
-		//颁发一个令牌和用户ID
 		Map map = new HashMap();
-		map.put("userId", user.getId());
-		map.put("token", NoteUtil.createUUID());
+		map.put("userId",user.getUserId());
+		map.put("token",NoteUtil.createUUID());
 		res.setData(map);
 		return res;
+	}
+	public void addUser(User user){
+		dao.add(user);
 	}
 
 }

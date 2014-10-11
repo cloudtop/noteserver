@@ -3,39 +3,40 @@ package org.tarena.note.entity;
 import java.io.Serializable;
 
 public class User implements Serializable{
-	private String id;
-	private String name;
-	private String password;
-	private String token;
-	private String descr;
-	public String getId() {
-		return id;
+	private String userId;
+	private String userName;
+	private String userPassword;
+	private String userToken;
+	private String userDescr;
+	public String getUserId() {
+		return userId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
-	public String getToken() {
-		return token;
+	public String getUserToken() {
+		return userToken;
 	}
-	public void setToken(String token) {
-		this.token = token;
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
 	}
-	public String getDescr() {
-		return descr;
+	public String getUserDescr() {
+		return userDescr;
 	}
-	public void setDescr(String descr) {
-		this.descr = descr;
+	public void setUserDescr(String userDescr) {
+		this.userDescr = userDescr;
 	}
+	
 }

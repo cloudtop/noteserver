@@ -5,5 +5,6 @@ import org.tarena.note.util.MyBatisDao;
 
 @MyBatisDao
 public interface UserDao {
-	public User findByName(String name);
+	public User findByUserName(String name);
+	public void add(User user);
 }
