@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tarena.note.dao.NoteBookDao">
+	<select id="findByUserId"  parameterType="string" resultType="org.tarena.note.entity.NoteBook">
+		select  cn_notebook_id notebookId,cn_user_id userId,cn_notebook_type_id,
+			  cn_notebook_name notebookName,cn_notebook_desc notebookDesc,cn_notebook_createtime notebookCreatetime
+			  from cn_notebook where cn_user_id=#{userId}	
+	</select>
+	<select id="findByNoteBookTypeId" parameterType="string" resultType="org.tarena.note.entity.NoteBook">
+		select  cn_notebook_id notebookId,cn_user_id userId,cn_notebook_type_id,
+			  cn_notebook_name notebookName,cn_notebook_desc notebookDesc,cn_notebook_createtime notebookCreatetime
+			  from cn_notebook where cn_notebook_type_id=#{notebookTypeId}
+	</select>
+	<select id="findByNoteBookId" parameterType="string" resultType="org.tarena.note.entity.NoteBook">
+		select  cn_notebook_id notebookId,cn_user_id userId,cn_notebook_type_id,
+			  cn_notebook_name notebookName,cn_notebook_desc notebookDesc,cn_notebook_createtime notebookCreatetime
+			  from cn_notebook where cn_notebook_id=#{notebookId}
+	</select>
+	<select id="findByNoteBookName" parameterType="string" resultType="org.tarena.note.entity.NoteBook">
+		select  cn_notebook_id notebookId,cn_user_id userId,cn_notebook_type_id,
+			  cn_notebook_name notebookName,cn_notebook_desc notebookDesc,cn_notebook_createtime notebookCreatetime
+			  from cn_notebook where cn_notebook_name=#{notebookName}
+	</select>
+	<insert id="addNoteBook"  parameterType="org.tarena.note.entity.NoteBook">
+		insert into cn_notebook values(#{notebookId},#{userId},#{notebookTypeId},#{notebookName},
+							#{notebookDesc},#{notebookCreatetime})
+	</insert>
+	<delete id="deleteNoteBook" parameterType="string">
+		 delete from cn_notebook where cn_notebook_id=#{notebookId}
+	</delete>
+	<update id="updateNoteBook" parameterType="org.tarena.note.entity.NoteBook">
+		update cn_notebook
+		 <set>
+			 <if test="userId!=null">cn_user_id=#{userId},</if>
+			 <if test="notebookTypeId!=null">cn_notebook_type_id=#{notebookTypeId},</if>
+			 <if test="notebookName!=null">cn_notebook_name=#{notebookName},</if>
+			 <if test="notebookDesc!=null">cn_notebook_desc=#{notebookDesc},</if>
+			 <if test="notebookCreatetime">cn_notebook_createtime=#{notebookCreatetime}</if>		
+		</set>where cn_notebook_id=#{notebookId}		
+	</update>
+</mapper>

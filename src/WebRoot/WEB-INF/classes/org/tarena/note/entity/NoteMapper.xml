@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tarena.note.dao.NoteDao">
+	<select id="findByUserId" 
+		parameterType="string"
+		resultType="org.tarena.note.entity.Note">
+		select cn_note_id noteId,
+			cn_notebook_id notebookId,
+			cn_user_id userId,
+			cn_note_status_id noteStatusId,
+			cn_note_type_id noteTypeId,
+			cn_note_title noteTitle,
+			cn_note_body noteBody,
+			cn_note_create_time noteCreateTime,
+			cn_note_last_modify_time noteLastModifyTime
+		from cn_note
+		where cn_user_id=#{userId} 
+	</select>	
+</mapper>
