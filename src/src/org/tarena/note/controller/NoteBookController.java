@@ -1,8 +1,5 @@
 package org.tarena.note.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,8 +28,19 @@ public class NoteBookController {
 	@RequestMapping("/findAllNoteBook")
 	@ResponseBody
 	public NoteResponse finaAllNoteBook(HttpServletRequest request){
-		
-		NoteResponse res = service.findNoteBookByUserId((String)request.getSession().getAttribute("userId"));
+		String userId=(String)request.getSession().getAttribute("userId");
+		System.out.println(userId);
+		NoteResponse res = service.findNoteBookByUserId(userId);
+		return res;
+	}
+	@RequestMapping("/updataNoteBookName")
+	@ResponseBody
+	public NoteResponse updataNoteBookName(
+			@RequestParam("prename") String prename,
+			@RequestParam("newname") String newname){
+		NoteBook notebook = service.findByNoteBookName(prename);
+		notebook.setNotebookName(newname);
+		NoteResponse res = service.updateNoteBook(notebook);
 		return res;
 	}
 }
